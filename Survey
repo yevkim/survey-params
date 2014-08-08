@@ -1,0 +1,52 @@
+<!doctype html>
+	<html lang="en">
+		<head>
+			<meta charset="utf-8" />
+			<title>survey params</title>
+			<!--[if IE]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+			<![endif]-->
+		</head>
+		<body>
+ 			<h1> Welcome to the sample Survey page</h1>
+ 			<h2> You need to pass the params in the following format ?id="value"&ano="value"&pv="value"</h2>
+
+ 			<div>
+ 				Entry URL = http://specfs.force.com/survey?id=9876987654&ano=9856324587652893415-&pv=prtpayslip<br>
+				Exit URL : http://specfs.force.com/kioskThankYou<br>
+<br>
+
+				Kindly note that<br>
+				SNID (aka id) = 9876987654<br>
+				Accounts Utilities Number (aka ano) = [1st 5 numbers of Accounts Utilities Number][BP Number][Last 5 numbers of Accounts Utilities Number]<br>
+				Purpose of Visit (aka pv) = prtpayslip<br>
+				<br><br>
+
+ 			</div>
+ 			<div id="params"></div>
+
+ 			<a href="kioskThankYou">Submit</a>
+
+ 			<script type="text/javascript">
+ 				var results = getJsonFromUrl();	
+ 				console.log(results);
+
+ 				//file:///Users/yevgeniykim/Desktop/sp-gyro/survey-params/index.html?deviceId=1411432&accountNo=223423423&transactionType=1
+ 				document.getElementById("params").innerHTML  += " id "+results.id+"</br>";
+ 				document.getElementById("params").innerHTML  += " ano "+results.ano+"</br>";
+ 				document.getElementById("params").innerHTML  += " pv "+results.pv+"</br>";
+ 			
+ 				function getJsonFromUrl() {
+				  var query = location.search.substr(1);
+				  var result = {};
+				  query.split("&").forEach(function(part) {
+				    var item = part.split("=");
+				    result[item[0]] = decodeURIComponent(item[1]);
+				  });
+				  return result;
+				}
+ 			</script>
+
+
+		</body>
+	</html>
